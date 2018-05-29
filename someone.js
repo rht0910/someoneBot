@@ -11,7 +11,7 @@ var log = new require('log');
 var logger = null;
 
 client.on('ready', () => {
-  logger = new log('info', fs.createWriteStream('latest.log', 'utf-8'));
+  logger = new log('debug', fs.createWriteStream('latest.log', 'utf-8'));
   logger.info("Logged in as %s(%s)!", client.user.tag, client.token);
   console.log(`Logged in as ${client.user.tag}(Token:${client.token})!`);
   client.user.setActivity("@someone");
@@ -21,7 +21,8 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (!msg.author.bot) {
-    if(~msg.content.indexOf("@someone")) {
+    logger.debug(msg.author.tag + "issued message: " + msg.content);
+    if(~msg.content.indexOf("@someone") || msg.mentions.users.id == "451106207013404684" || msg.mentions.users == "<@451106207013404684>" || ~msg.content.indexOf("<@451106207013404684>")) {
       console.log("Got @someone!");
       logger.info("Got @someone!");
       if (msg.guild.available) {

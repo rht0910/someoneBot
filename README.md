@@ -10,4 +10,3 @@
 
 ### Be careful with this:
  - Not compatible with DM.
- - This is may not be stable. However, I hope you use this.

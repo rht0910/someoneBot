@@ -21,14 +21,16 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (!msg.author.bot) {
-    logger.debug(msg.author.tag + "issued message: " + msg.content);
-    if(~msg.content.indexOf("@someone") || msg.mentions.users.id == "451106207013404684" || msg.mentions.users == "<@451106207013404684>" || ~msg.content.indexOf("<@451106207013404684>")) {
+    if (msg.channel instanceof Discord.DMChannel) return msg.channel.send("Currently not supported DM.");
+    if (msg.channel instanceof Discord.GroupDMChannel) return msg.channel.send("Currently not supported Group DM.");
+    logger.debug(msg.author.tag + " issued message: " + msg.content);
+    if(~msg.content.indexOf("<@451106207013404684>")) {
       console.log("Got @someone!");
       logger.info("Got @someone!");
       if (msg.guild.available) {
         var member = msg.guild.members.randomKey();
-	console.log("I've decided user: " + member.tag);
-	logger.info("I've decided user: " + member.tag);
+	console.log("I've decided user: " + member);
+	logger.info("I've decided user: " + member);
         msg.channel.send("<@" + member + ">");
       }
     }

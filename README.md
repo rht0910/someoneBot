@@ -1,4 +1,4 @@
-# someoneBot
+# someoneBot (2018 April Fools)
 @someone April Fools is now on your server!
 
 ## Really?
